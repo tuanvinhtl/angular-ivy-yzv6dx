@@ -52,34 +52,9 @@ export class AppComponent implements OnInit, AfterViewInit {
       group_id: 'NC-0014',
       order: [
         {
-          order_id: 'ORDER-001',
-          start_time: '2022-07-10T17:00:00.000Z',
-          end_tine: '2022-07-12T17:00:00.000Z',
-        },
-        {
           order_id: 'ORDER-0016',
-          start_time: '2022-07-10T17:00:00.000Z',
-          end_tine: '2022-07-12T17:00:00.000Z',
-        },
-        {
-          order_id: 'ORDER-0012',
-          start_time: '2022-07-10T17:00:00.000Z',
-          end_tine: '2022-07-12T17:00:00.000Z',
-        },
-        {
-          order_id: 'ORDER-0015',
-          start_time: '2022-07-10T17:00:00.000Z',
-          end_tine: '2022-07-12T17:00:00.000Z',
-        },
-        {
-          order_id: 'ORDER-004',
-          start_time: '2022-07-10T17:00:00.000Z',
-          end_tine: '2022-07-12T17:00:00.000Z',
-        },
-        {
-          order_id: 'ORDER-003',
-          start_time: '2022-07-10T17:00:00.000Z',
-          end_tine: '2022-07-12T17:00:00.000Z',
+          start_time: '2022-07-12T17:00:00.000Z',
+          end_tine: '2022-07-15T17:00:00.000Z',
         },
       ],
     },
@@ -88,32 +63,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       order: [
         {
           order_id: 'ORDER-001',
-          start_time: '2022-07-10T17:00:00.000Z',
-          end_tine: '2022-07-12T17:00:00.000Z',
-        },
-        {
-          order_id: 'ORDER-0016',
-          start_time: '2022-07-10T17:00:00.000Z',
-          end_tine: '2022-07-12T17:00:00.000Z',
-        },
-        {
-          order_id: 'ORDER-0012',
-          start_time: '2022-07-10T17:00:00.000Z',
-          end_tine: '2022-07-12T17:00:00.000Z',
-        },
-        {
-          order_id: 'ORDER-0015',
-          start_time: '2022-07-10T17:00:00.000Z',
-          end_tine: '2022-07-12T17:00:00.000Z',
-        },
-        {
-          order_id: 'ORDER-004',
-          start_time: '2022-07-10T17:00:00.000Z',
-          end_tine: '2022-07-12T17:00:00.000Z',
-        },
-        {
-          order_id: 'ORDER-003',
-          start_time: '2022-07-10T17:00:00.000Z',
+          start_time: '2022-07-01T17:00:00.000Z',
           end_tine: '2022-07-12T17:00:00.000Z',
         },
       ],
@@ -123,17 +73,12 @@ export class AppComponent implements OnInit, AfterViewInit {
   constructor(private cdr: ChangeDetectorRef) {
     const startWeek = moment().startOf('month');
     const endWeek = moment().endOf('month');
-
     const diffDate = endWeek.diff(startWeek, 'days');
-    console.log(startWeek);
     let calendar = [startWeek];
     for (var week = 0; week < diffDate; week++) {
       calendar.push(moment(startWeek).add(week + 1, 'day'));
     }
     this.calendar = calendar;
-
-    console.log(moment(this.calendar[0]).unix());
-    console.log(this.calendar);
   }
 
   onScroll(el: Event) {
@@ -147,15 +92,19 @@ export class AppComponent implements OnInit, AfterViewInit {
       }
     }
   }
-  ngOnInit() {
-    
-  }
+  ngOnInit() {}
 
   ngAfterViewInit() {
     this.totalTime =
       moment(this.calendar.slice(-1)[0]).unix() -
       moment(this.calendar[0]).unix();
     // this.scaleTotal =
+    console.log(
+      'qweqwe',
+      moment('2022-07-12T17:00:00.000Z')
+        .add(10, 'hours')
+        .format('MMMM Do YYYY, h:mm:ss a')
+    );
     this.cdr.detectChanges();
   }
 }

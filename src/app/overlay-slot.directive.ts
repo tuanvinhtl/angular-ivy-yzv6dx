@@ -16,7 +16,6 @@ import moment from 'moment';
 export class OverlaySlotDirective implements AfterViewInit {
   @Input()
   set range(value) {
-    console.log(value);
     if (!value.totalTime) return;
     const totalTime = value.totalTime;
     const widthTotalPos = this.elementRef.nativeElement.offsetWidth;
@@ -29,20 +28,15 @@ export class OverlaySlotDirective implements AfterViewInit {
         moment(order.end_tine).unix() - moment(order.start_time).unix();
       const posStart =
         moment(order.start_time).unix() - moment(value.start).unix();
-      console.log(moment(order.start_time).format('YYYY-MM-DD HH:mm:ss'));
-      const ran = posStart * scale;
+      const ran = posStart * scale + 72;
       const ranWidth = timeDuring * scale;
-      // console.log(ranWidth);
       const child = this.document.createElement('div');
       child.className = 'overlay-slot';
-      // child.style.transform = `translateX(${ran}px)`;
 
       const cssText = `width: ${ranWidth}px; transform: translateX(${ran}px);`;
       child.style.cssText = cssText;
       this.renderer.appendChild(this.elementRef.nativeElement, child);
     });
-
-    // console.log(value);
   }
   constructor(
     private elementRef: ElementRef,

@@ -8,6 +8,7 @@ import {
   OnInit,
 } from '@angular/core';
 import moment from 'moment';
+import { timeInterval } from 'rxjs';
 
 @Component({
   selector: 'my-app',
@@ -17,10 +18,12 @@ import moment from 'moment';
 export class AppComponent implements OnInit, AfterViewInit {
   // @ViewChild('el') el: any;
   @ViewChild('el', { static: true }) el: ElementRef;
+  @ViewChild('timeDelever', { static: true }) timeDelever: ElementRef;
   name = 'Angular ' + VERSION.major;
   calendar = [];
   maxScrollLeft = 0;
   totalTime;
+  refreshIntervalId;
 
   booking_order = [
     {
@@ -92,6 +95,18 @@ export class AppComponent implements OnInit, AfterViewInit {
       }
     }
   }
+  start() {
+    const scale = 72 / (24 * 3600);
+    let px = 0;
+    this.refreshIntervalId = setInterval(() => {
+      px = px + scale;
+      console.log(scale * 25);
+    }, 25);
+  }
+  stop() {
+    clearInterval(this.refreshIntervalId);
+  }
+
   ngOnInit() {}
 
   ngAfterViewInit() {

@@ -11,6 +11,17 @@
   font-size: 12px;
   margin: 5px 2px;
 }
+.mqtable3{
+  position: relative;
+}
+.time-delever{
+  position: absolute;
+  top: 0;
+  left: 72px;
+  height: 100%;
+  width: 2px;
+  background: red;
+}
 
 /* .overlay-slot {
   width: 300px;

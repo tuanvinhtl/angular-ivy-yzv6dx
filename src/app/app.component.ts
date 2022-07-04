@@ -24,6 +24,9 @@ export class AppComponent implements OnInit, AfterViewInit {
   maxScrollLeft = 0;
   totalTime;
   refreshIntervalId;
+  $px = 0;
+
+  scale = 72 / (24 * 3600);
 
   booking_order = [
     {
@@ -82,6 +85,14 @@ export class AppComponent implements OnInit, AfterViewInit {
       calendar.push(moment(startWeek).add(week + 1, 'day'));
     }
     this.calendar = calendar;
+
+    const posStart = moment().unix() - moment(this.calendar[0]).unix();
+
+    this.$px = posStart * this.scale;
+
+    this.refreshIntervalId = setInterval(() => {
+      this.$px = this.$px + this.scale / 25;
+    }, 25);
   }
 
   onScroll(el: Event) {
@@ -95,14 +106,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       }
     }
   }
-  start() {
-    const scale = 72 / (24 * 3600);
-    let px = 0;
-    this.refreshIntervalId = setInterval(() => {
-      px = px + scale;
-      console.log(scale * 25);
-    }, 25);
-  }
+  start() {}
   stop() {
     clearInterval(this.refreshIntervalId);
   }

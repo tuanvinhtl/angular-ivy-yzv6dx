@@ -19,8 +19,8 @@
   top: 0;
   left: 72px;
   height: 100%;
-  width: 2px;
-  background: red;
+  width: 1px;
+  background: #005aff;
 }
 
 /* .overlay-slot {

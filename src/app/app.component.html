@@ -28,7 +28,11 @@
       </ng-container>
       <!-- <div class="overlay-slot"></div> -->
     </tbody>
-    <div #timeDelever class="time-delever"></div>
+    <div
+      #timeDelever
+      class="time-delever"
+      [ngStyle]="{ transform: 'translateX(' + $px + 'px)' }"
+    ></div>
   </table>
 </div>
 <button (click)="start()">Start</button><button (click)="stop()">stop</button>
